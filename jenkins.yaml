@@ -50,13 +50,6 @@ spec:
             requests:
               cpu: 1
               memory: 2Gi
-          livenessProbe:
-            httpGet:
-              path: /login
-              port: 8080
-            initialDelaySeconds: 60
-            timeoutSeconds: 5
-            failureThreshold: 12
           env:
             - name: LIMITS_MEMORY
               valueFrom:
