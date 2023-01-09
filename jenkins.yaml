@@ -38,7 +38,11 @@ spec:
           image: jenkins/jenkins:2.385-jdk11
           ports:
             - containerPort: 8080
+              name: web
+              protocol: TCP
             - containerPort: 50000
+              name: agent
+              protocol: TCP
           resources:
             limits:
               cpu: 2
@@ -82,11 +86,12 @@ spec:
   type: NodePort
   ports:
     - name: web
-      targetPort: 8080
+      port: 8080
+      targetPort: web
       nodePort: 30008
     - name: agent
       port: 50000
-      targetPort: 50000
+      targetPort: agent
 ---
 apiVersion: v1
 kind: ServiceAccount
